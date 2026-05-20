@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Downloads Premium — Heróis da Fé</title>
+    <meta name="description" content="Seu acesso foi liberado! Baixe aqui todos os materiais digitais e PDFs do projeto Heróis da Fé.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Preconnect para carregar Google Fonts de forma ultra veloz -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon herdado se houver, ou padrão do navegador -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <style>
+        /* --- VARIÁVEIS DO SISTEMA DE DESIGN PREMIUM --- */
+        :root {
+            /* Cores chaves baseadas no site principal, porém adaptadas para área premium */
+            --primary: hsl(220, 100%, 25%); /* Azul Celestial Nobre */
+            --primary-light: hsl(217, 91%, 60%);
+            --primary-dark: hsl(220, 100%, 15%); /* Azul escuro premium */
+            --bg-light: hsl(210, 40%, 98%); /* Fundo claro clean */
+            --card-bg: #ffffff;
+            --text-dark: hsl(222, 47%, 11%);
+            --text-muted: hsl(215, 16%, 47%);
+            --border-light: rgba(15, 23, 42, 0.06);
+
+            /* Sombras tridimensionais suaves e elegantes */
+            --shadow-premium: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 
+                               0 1px 3px rgba(15, 23, 42, 0.03),
+                               0 30px 60px -15px rgba(15, 23, 42, 0.04);
+            
+            --shadow-button-hover: 0 8px 20px -6px rgba(15, 23, 42, 0.25);
+
+            /* Arredondamento */
+            --radius-card: 24px;
+            --radius-btn: 14px;
+            
+            /* Transições */
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- RESET GERAL --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            min-height: 100vh;
+            /* Detalhe de fundo dinâmico e minimalista */
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(217, 91%, 60%, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(220, 100%, 25%, 0.02) 0px, transparent 50%);
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .wrapper {
+            width: 100%;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- CARD DE DOWNLOAD CENTRAL --- */
+        .download-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-premium);
+            border: 1px solid var(--border-light);
+            width: 100%;
+            padding: 40px 32px 36px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Linha sutil de brilho no topo do card */
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+        }
+
+        /* --- ELEMENTOS DE IDENTIDADE --- */
+        .logo-wrapper {
+            margin-bottom: 24px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-image {
+            max-height: 44px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.02));
+        }
+
+        /* --- TEXTOS --- */
+        .page-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        .page-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 36px;
+            font-weight: 500;
+            padding: 0 10px;
+        }
+
+        /* --- SESSÃO DE DOWNLOADS --- */
+        .downloads-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+        }
+
+        /* --- BOTÃO DE DOWNLOAD PREMIUM --- */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 16px 20px;
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: var(--radius-btn);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
+        }
+
+        /* Ícone de PDF do lado esquerdo */
+        .pdf-icon-box {
+            background-color: rgba(239, 68, 68, 0.1); /* Vermelho translúcido suave */
+            color: #ef4444; /* Vermelho vibrante de PDF */
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .pdf-svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2.2;
+        }
+
+        /* Texto do Botão */
+        .btn-text-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            margin-right: 12px;
+            overflow: hidden;
+        }
+
+        .btn-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .btn-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Ícone de Seta de Download do lado direito */
+        .download-arrow-box {
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .arrow-svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.5;
+        }
+
+        /* --- COMPORTAMENTO HOVER E INTERATIVO --- */
+        .download-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-button-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .download-btn:hover .pdf-icon-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .download-btn:hover .download-arrow-box {
+            color: #ffffff;
+            transform: translateY(1px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
+        }
+
+        /* --- TEXTO INFORMATIVO INFERIOR --- */
+        .info-badge-text {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 28px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .info-dot {
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* --- RODAPÉ --- */
+        .footer-premium {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            opacity: 0.85;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        /* --- RESPONSIVIDADE ADAPTATIVA --- */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .download-card {
+                padding: 32px 20px 28px 20px;
+                border-radius: 20px;
+            }
+
+            .page-title {
+                font-size: 1.55rem;
+            }
+
+            .page-subtitle {
+                font-size: 0.88rem;
+                margin-bottom: 28px;
+            }
+
+            .download-btn {
+                padding: 14px 16px;
+            }
+
+            .pdf-icon-box {
+                width: 36px;
+                height: 36px;
+                margin-right: 12px;
+            }
+
+            .pdf-svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .btn-title {
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- CARD DE DOWNLOAD CENTRALIZADO -->
+        <main class="download-card">
+
+            <!-- Logo no Topo -->
+            <header class="logo-wrapper">
+                <img src="https://i.imgur.com/U7uUYNB.png" alt="Heróis da Fé Logo" class="logo-image" loading="eager">
+            </header>
+
+            <!-- Título Principal -->
+            <h1 class="page-title">Baixe seus PDFs aqui 📥</h1>
+
+            <!-- Subtítulo de Sucesso -->
+            <p class="page-subtitle">Seu acesso foi liberado com sucesso. Clique abaixo para baixar os materiais.</p>
+
+            <!-- Sessão de Downloads (Botões organizados) -->
+            <section class="downloads-container">
+
+                <!-- Botão 1: Álbum Heróis da Fé.pdf -->
+                <a href="#" class="download-btn" title="Baixar Álbum Heróis da Fé.pdf" download="Álbum Heróis da Fé.pdf">
+                    <div class="pdf-icon-box">
+                        <svg class="pdf-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Álbum Heróis da Fé.pdf</span>
+                        <span class="btn-subtitle">Material Principal</span>
+                    </div>
+                    <div class="download-arrow-box">
+                        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Botão 2: Figurinhas Bíblicas.pdf -->
+                <a href="#" class="download-btn" title="Baixar Figurinhas Bíblicas.pdf" download="Figurinhas Bíblicas.pdf">
+                    <div class="pdf-icon-box">
+                        <svg class="pdf-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Figurinhas Bíblicas.pdf</span>
+                        <span class="btn-subtitle">Pacote Completo</span>
+                    </div>
+                    <div class="download-arrow-box">
+                        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Botão 3: 50 Curiosidades Bíblicas.pdf -->
+                <a href="#" class="download-btn" title="Baixar 50 Curiosidades Bíblicas.pdf" download="50 Curiosidades Bíblicas.pdf">
+                    <div class="pdf-icon-box">
+                        <svg class="pdf-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="btn-text-content">
+                        <span class="btn-title">50 Curiosidades Bíblicas.pdf</span>
+                        <span class="btn-subtitle">Material Bônus</span>
+                    </div>
+                    <div class="download-arrow-box">
+                        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Botão 4: 100 Atividades Bíblicas.pdf -->
+                <a href="#" class="download-btn" title="Baixar 100 Atividades Bíblicas.pdf" download="100 Atividades Bíblicas.pdf">
+                    <div class="pdf-icon-box">
+                        <svg class="pdf-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="btn-text-content">
+                        <span class="btn-title">100 Atividades Bíblicas.pdf</span>
+                        <span class="btn-subtitle">Material Bônus</span>
+                    </div>
+                    <div class="download-arrow-box">
+                        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Botão 5: Certificado Herói da Fé.pdf -->
+                <a href="#" class="download-btn" title="Baixar Certificado Herói da Fé.pdf" download="Certificado Herói da Fé.pdf">
+                    <div class="pdf-icon-box">
+                        <svg class="pdf-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Certificado Herói da Fé.pdf</span>
+                        <span class="btn-subtitle">Exclusivo de Conclusão</span>
+                    </div>
+                    <div class="download-arrow-box">
+                        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                </a>
+
+            </section>
+
+            <!-- Pequeno texto informativo abaixo -->
+            <div class="info-badge-text" aria-label="Informações sobre o acesso e formato do material">
+                <span>Acesso vitalício</span>
+                <span class="info-dot" aria-hidden="true"></span>
+                <span>Material 100% digital</span>
+            </div>
+
+        </main>
+
+        <!-- Rodapé fora do card -->
+        <footer class="footer-premium">
+            <p class="footer-copy">© 2026 Heróis da Fé — Todos os direitos reservados</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
